@@ -74,8 +74,8 @@ dependencies {
     compileOnly("com.github.brcdev-minecraft:shopgui-api:3.0.0") {
         exclude(group = "org.spigotmc", module = "spigot-api")
     }
-    compileOnly("net.momirealms:craft-engine-core:26.5")
-    compileOnly("net.momirealms:craft-engine-bukkit:26.5")
+    compileOnly("net.momirealms:craft-engine-core:26.9.2-SNAPSHOT")
+    compileOnly("net.momirealms:craft-engine-bukkit:26.9.2-SNAPSHOT")
     // entity
     compileOnly("io.lumine:Mythic-Dist:5.6.2")
     // eco
