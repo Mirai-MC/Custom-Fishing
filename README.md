@@ -1,79 +1,58 @@
-# Custom-Fishing 🎣
+# CustomFishing
 
-![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/Xiao-MoMi/Custom-Fishing)
-<a href="https://mo-mi.gitbook.io/xiaomomi-plugins/plugin-wiki/customfishing" alt="GitBook">
-<img src="https://img.shields.io/badge/docs-gitbook-brightgreen" alt="Gitbook"/>
-</a>
-[![Scc Count Badge](https://sloc.xyz/github/Xiao-MoMi/Custom-Fishing/?category=codes)](https://github.com/Xiao-MoMi/Custom-Fishing/)
-![Code Size](https://img.shields.io/github/languages/code-size/Xiao-MoMi/Custom-Fishing)
-![bStats Servers](https://img.shields.io/bstats/servers/16648)
-![bStats Players](https://img.shields.io/bstats/players/16648)
-![GitHub](https://img.shields.io/github/license/Xiao-MoMi/Custom-Fishing)
+CustomFishing is a customizable fishing plugin for modern Minecraft servers. It provides fishing minigames, weighted loot, conditions, actions, custom fishing environments, and an API for extending its mechanics.
 
-## 📌 About CustomFishing
-CustomFishing is a **Paper plugin** designed to provide a variety of **fishing minigames** and a powerful **condition and action system**. It introduces a unique **weight system**, offering unparalleled customization while maintaining optimal performance.
+This repository is a maintained fork focused on the current server stack.
 
-### 🔥 Key Features:
-- Extensive **customization** options for fishing mechanics.
-- Ability to **register custom** mechanisms, actions, conditions, games, and configuration parsers.
-- Supports **innovative fishing experiences**, such as **lava fishing** or **void fishing**.
-- Provides a **robust API** for developers to extend functionality easily.
+## Compatibility
 
----
-## 🔧 How to Build
+| Component | Supported version |
+| --- | --- |
+| Minecraft | 26.3 |
+| Java | 25 |
+| Paper API | 26.3 |
+| Folia / Lophine | Supported |
+| CraftEngine | 26.9.2-SNAPSHOT |
+| CustomCrops | 3.6.57 |
 
-### 💻 Command Line
-1. Install **JDK 17 & 21**.
-2. Open a terminal and navigate to the project directory.
-3. Run:
+CraftEngine and CustomCrops integrations are optional. The plugin can also integrate with other supported economy, placeholder, item, skill, quest, region, and season plugins when they are installed.
 
-   ```sh
-   ./gradlew build
-   ```
-4. The artifact will be available in the **/target** folder.
+The versions above were tested together on Lophine 26.3 with its Folia region scheduler enabled.
 
-### 🛠️ Using an IDE
-1. Import the project into your preferred IDE.
-2. Execute the **Gradle build** action.
-3. Find the artifact in the **/target** folder.
+## Features
 
----
-## 🤝 How to Contribute
+- Configurable fishing loot, conditions, actions, mechanics, and minigames
+- Custom environments such as lava fishing and void fishing
+- Fishing bags, markets, competitions, and statistics
+- Extensible API for custom integrations
+- Folia-compatible scheduling
 
-### 🌍 Translations
-1. Clone this repository.
-2. Create a new language file in:
-   ```
-   /core/src/main/resources/translations
-   ```
-3. Once done, submit a **pull request** for review. We appreciate your contributions!
+## Building
 
----
-## 💖 Support the Developer
-If you enjoy using CustomFishing, consider supporting the developer!
+Install JDK 25, then run:
 
-- **Polymart**: [CustomFishing on Polymart](https://polymart.org/resource/customfishing.2723/)
-- **BuiltByBit**: [CustomFishing on BuiltByBit](https://builtbybit.com/resources/customfishing.36361/)
-- **Afdian**: [Support via Afdian](https://afdian.com/@xiaomomi/)
-
----
-## 📚 CustomFishing API
-
-### 📌 Repository
-```kotlin
-repositories {
-    maven("https://repo.momirealms.net/releases/")
-}
+```shell
+./gradlew clean build
 ```
 
-### 📌 Dependency
+On Windows:
+
+```powershell
+.\gradlew.bat clean build
+```
+
+The plugin JAR is generated in `target/`.
+
+## Development API
+
+The API module uses the following coordinates:
+
 ```kotlin
 dependencies {
-    compileOnly("net.momirealms:custom-fishing:2.3.7")
+    compileOnly("net.momirealms:custom-fishing:2.3.26")
 }
 ```
 
----
-## 🎉 Fun Fact
-I misspelled "mechanism" as "mechanic"—I should have caught that earlier! 😆
+## Credits and license
 
+CustomFishing was originally created by XiaoMoMi. This maintained fork is distributed under the [GNU General Public License v3.0](LICENSE).
