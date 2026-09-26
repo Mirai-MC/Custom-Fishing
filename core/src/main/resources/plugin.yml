@@ -1,7 +1,7 @@
 name: CustomFishing
 version: '${project_version}'
 main: net.momirealms.customfishing.bukkit.BukkitBootstrap
-api-version: 1.17
+api-version: '26.3'
 authors: [ XiaoMoMi ]
 folia-supported: true
 softdepend:

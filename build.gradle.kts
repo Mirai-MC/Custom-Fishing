@@ -33,9 +33,11 @@ subprojects {
 }
 
 fun versionBanner(): String = project.providers.exec {
+    isIgnoreExitValue = true
     commandLine("git", "rev-parse", "--short=8", "HEAD")
-}.standardOutput.asText.map { it.trim() }.getOrElse("Unknown")
+}.standardOutput.asText.map { it.trim().ifEmpty { "Unknown" } }.getOrElse("Unknown")
 
 fun builder(): String = project.providers.exec {
+    isIgnoreExitValue = true
     commandLine("git", "config", "user.name")
-}.standardOutput.asText.map { it.trim() }.getOrElse("Unknown")
+}.standardOutput.asText.map { it.trim().ifEmpty { "Unknown" } }.getOrElse("Unknown")

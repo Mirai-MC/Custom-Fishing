@@ -123,6 +123,10 @@ public class VersionHelper {
         return version >= 260100;
     }
 
+    public static boolean isVersionNewerThan26_3() {
+        return version >= 260300;
+    }
+
     public static boolean isVersionNewerThan1_19() {
         return version >= 11900;
     }

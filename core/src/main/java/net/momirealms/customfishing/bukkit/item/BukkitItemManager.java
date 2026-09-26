@@ -318,7 +318,7 @@ public class BukkitItemManager implements ItemManager, Listener {
         if (itemStack == null || itemStack.getType() == Material.AIR || itemStack.getAmount() == 0)
             return;
         if (!incorrectUsage) {
-            int unBreakingLevel = itemStack.getEnchantmentLevel(Enchantment.DURABILITY);
+            int unBreakingLevel = itemStack.getEnchantmentLevel(Enchantment.UNBREAKING);
             if (Math.random() > (double) 1 / (unBreakingLevel + 1)) {
                 return;
             }

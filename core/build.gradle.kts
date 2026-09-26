@@ -10,12 +10,13 @@ repositories {
 
 dependencies {
     // platform
-    compileOnly("dev.folia:folia-api:${rootProject.properties["paper_version"]}-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:${rootProject.properties["paper_version"]}")
     // subprojects
     implementation(project(":api")) {
         exclude("dev.dejvokep", "boosted-yaml")
     }
     implementation(project(":compatibility"))
+    compileOnly(files(rootProject.file("compatibility/libs/AuraSkills-2.3.10.jar")))
     // adventure
     implementation("net.kyori:adventure-api:${rootProject.properties["adventure_bundle_version"]}")
     implementation("net.kyori:adventure-text-minimessage:${rootProject.properties["adventure_bundle_version"]}")
@@ -27,7 +28,7 @@ dependencies {
     implementation("com.saicone.rtag:rtag:${rootProject.properties["rtag_version"]}")
     implementation("com.saicone.rtag:rtag-item:${rootProject.properties["rtag_version"]}")
     // nms util
-    implementation("net.momirealms:sparrow-heart:${rootProject.properties["sparrow_heart_version"]}")
+    implementation("io.github.missdrop:sparrow-heart:${rootProject.properties["sparrow_heart_version"]}")
     // bstats
     compileOnly("org.bstats:bstats-bukkit:${rootProject.properties["bstats_version"]}")
     // config
@@ -82,15 +83,14 @@ artifacts {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
-    options.release.set(21)
-    dependsOn(tasks.clean)
+    options.release.set(25)
 }

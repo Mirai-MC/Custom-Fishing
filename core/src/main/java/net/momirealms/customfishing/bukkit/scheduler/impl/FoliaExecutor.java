@@ -49,13 +49,13 @@ public class FoliaExecutor implements RegionExecutor<Location> {
     @Override
     public SchedulerTask runLater(Runnable r, long delayTicks, Location l) {
         if (l == null) {
-            if (delayTicks == 0) {
-                return Bukkit.getGlobalRegionScheduler().runDelayed(plugin, scheduledTask -> r.run(), delayTicks)::cancel;
-            } else {
+            if (delayTicks <= 0) {
                 return Bukkit.getGlobalRegionScheduler().run(plugin, scheduledTask -> r.run())::cancel;
+            } else {
+                return Bukkit.getGlobalRegionScheduler().runDelayed(plugin, scheduledTask -> r.run(), delayTicks)::cancel;
             }
         } else {
-            if (delayTicks == 0) {
+            if (delayTicks <= 0) {
                 return Bukkit.getRegionScheduler().run(plugin, l, scheduledTask -> r.run())::cancel;
             } else {
                 return Bukkit.getRegionScheduler().runDelayed(plugin, l, scheduledTask -> r.run(), delayTicks)::cancel;
@@ -65,10 +65,12 @@ public class FoliaExecutor implements RegionExecutor<Location> {
 
     @Override
     public SchedulerTask runRepeating(Runnable r, long delayTicks, long period, Location l) {
+        long normalizedDelay = Math.max(1, delayTicks);
+        long normalizedPeriod = Math.max(1, period);
         if (l == null) {
-            return Bukkit.getGlobalRegionScheduler().runAtFixedRate(plugin, scheduledTask -> r.run(), delayTicks, period)::cancel;
+            return Bukkit.getGlobalRegionScheduler().runAtFixedRate(plugin, scheduledTask -> r.run(), normalizedDelay, normalizedPeriod)::cancel;
         } else {
-            return Bukkit.getRegionScheduler().runAtFixedRate(plugin, l, scheduledTask -> r.run(), delayTicks, period)::cancel;
+            return Bukkit.getRegionScheduler().runAtFixedRate(plugin, l, scheduledTask -> r.run(), normalizedDelay, normalizedPeriod)::cancel;
         }
     }
 }

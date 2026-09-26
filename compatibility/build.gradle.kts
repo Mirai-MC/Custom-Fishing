@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     compileOnly(project(":api"))
-    compileOnly("net.momirealms:sparrow-heart:${rootProject.properties["sparrow_heart_version"]}")
+    compileOnly("io.github.missdrop:sparrow-heart:${rootProject.properties["sparrow_heart_version"]}")
     compileOnly("dev.dejvokep:boosted-yaml:${rootProject.properties["boosted_yaml_version"]}")
     compileOnly("net.kyori:adventure-api:${rootProject.properties["adventure_bundle_version"]}") {
         exclude(module = "adventure-bom")
@@ -34,9 +34,11 @@ dependencies {
     // papi
     compileOnly("me.clip:placeholderapi:${rootProject.properties["placeholder_api_version"]}")
     // server
-    compileOnly("dev.folia:folia-api:${rootProject.properties["paper_version"]}-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:${rootProject.properties["paper_version"]}")
     // vault
-    compileOnly("com.github.MilkBowl:VaultAPI:${rootProject.properties["vault_version"]}")
+    compileOnly("com.github.MilkBowl:VaultAPI:${rootProject.properties["vault_version"]}") {
+        exclude(group = "org.bukkit", module = "bukkit")
+    }
     // season
     compileOnly("net.momirealms:custom-crops:3.6.41")
     compileOnly(files("libs/RealisticSeasons-api.jar"))
@@ -69,7 +71,9 @@ dependencies {
     compileOnly("com.willfp:EcoItems:5.61.0")
     compileOnly("io.th0rgal:oraxen:1.168.0")
     compileOnly("com.nexomc:nexo:1.7.3")
-    compileOnly("com.github.brcdev-minecraft:shopgui-api:3.0.0")
+    compileOnly("com.github.brcdev-minecraft:shopgui-api:3.0.0") {
+        exclude(group = "org.spigotmc", module = "spigot-api")
+    }
     compileOnly("net.momirealms:craft-engine-core:26.5")
     compileOnly("net.momirealms:craft-engine-bukkit:26.5")
     // entity
@@ -90,15 +94,14 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
-    options.release.set(21)
-    dependsOn(tasks.clean)
+    options.release.set(25)
 }

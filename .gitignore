@@ -3,6 +3,7 @@
 .gradle/
 build/
 target/
+/.test/
 
 # Compiled class file
 *.class
